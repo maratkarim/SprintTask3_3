@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .general{
+            padding: 20px;
+            display: flex;
+            border: 1px solid rgb(210, 209, 209);;
+            margin-right: 600px;
+            justify-content: space-around;
+            border-radius: 15px;
+        }
+        .firstPart{
+            margin-right: 25px;
+        }
+        .secondPart{
+            margin-right: 25px;
+        }
+        .thridPart{
+            margin-right: 25px;
+        }
+        .simple1 input{
+            border: 1px solid rgb(210, 209, 209);
+            padding: 5px;
+            margin-top: 8px;
+            margin-right: 10px;
+        }
+        .simple1 select{
+            border: 1px solid rgb(210, 209, 209);
+            padding: 4px;
+        }
+        .simple2 input{
+            border: 1px solid rgb(210, 209, 209);
+            padding: 5px;
+            margin-top: 8px;
+            background-color: rgb(210, 209, 209);
+        }
+    </style>
+</head>
+<body>
+    <div class="general">
+        <div class="firstPart">
+            Введите сумму:
+            <div class="simple1">
+                <input type="text" name="" id="inputNumber" oninput="calculator">
+                <select id="valutaOf" onchange="valuta()" class="simple1">
+                    <option>KZT</option>
+                    <option>USD</option>
+                    <option>EUR</option>
+                </select>
+            </div>
+        </div>
+        <div class="secondPart">
+            KZT (tenge)
+            <div class="simple2">
+                <input type="text" name="" id="KZT_id">
+            </div>
+        </div>
+        <div class="thridPart">
+            USD (dollar)
+            <div class="simple2">
+                <input type="text" name="" id="USD_id">
+            </div>
+        </div>
+        <div class="forthPart">
+            EUR (euro)
+            <div class="simple2">
+                <input type="text" name="" id="EUR_id">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // kzt
+        function calculator1(){
+            let inputNum = parseInt(inputNumber.value);
+            let resultUSD = (inputNum/429).toFixed(2);
+            USD_id.value = resultUSD;
+
+            let resultEUR = (inputNum/507).toFixed(2);
+            EUR_id.value = resultEUR;
+        }
+        inputNumber.addEventListener('input', calculator1);
+        KZT_id.value='-';
+        USD_id.value='-';
+        EUR_id.value='-';
+        // usd
+        function calculator2(){
+            let inputNum = parseInt(inputNumber.value);
+            let resultKZT = (inputNum*431).toFixed(2);
+            KZT_id.value = resultKZT;
+
+            let resultEUR = (inputNum*0.92).toFixed(2);
+            EUR_id.value = resultEUR;
+        }
+        //eur
+        function calculator3(){
+            let inputNum = parseInt(inputNumber.value);
+            let resultUSD = (inputNum*1.09).toFixed(2);
+            USD_id.value = resultUSD;
+
+            let resultKZT = (inputNum*509).toFixed(2);
+            KZT_id.value = resultKZT;
+        }        
+
+        function valuta(){
+            let valutas=valutaOf.value;
+            if(valutas==="KZT"){
+                KZT_id.value='-';
+                calculator1();
+            }
+            else if(valutas==="USD"){
+                USD_id.value='-';
+                calculator2();   
+            }else{
+                EUR_id.value='-';
+                calculator3();
+            }
+        }
+    </script>
+</body>
+</html>
